@@ -1,0 +1,42 @@
+.note-card {
+  width: 30rem;
+  padding: 1rem;
+  border: 1px solid rgb(205, 205, 205);
+  border-radius: 5px;
+}
+/* 
+.pin-btn {
+  color: white;
+  background-color: blueviolet;
+} */
+
+.input-section  select {
+    width: 5rem;
+}
+
+.note-input-textarea {
+  overflow: hidden;
+  height: 40px;
+  resize: none;
+  border: none;
+  padding: 0.5rem;
+  line-height: 1.5rem;
+  flex-grow: 2;
+  margin-bottom: 1rem;
+}
+
+.note-input-textarea:focus {
+  outline: none;
+}
+
+.input-section > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.note-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
