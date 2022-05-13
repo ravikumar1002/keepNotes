@@ -1,28 +1,38 @@
 import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
-import { Header, Sidebar, Search, NoteCard , SaveNotes} from "./components/index";
-import { Home } from "./pages/index";
+import {
+  Header,
+  Sidebar,
+  Search,
+} from "./components/index";
+import { Home, Login, SignUp } from "./pages/index";
+import { RequiresAuth } from "./pages/auth/components/RequiresAuth";
+import { useAuth } from "./context/auth-context";
 
 function App() {
+  const { token } = useAuth();
   return (
     <div className="App">
-      <Header />
+      {token && <Header />}
       <div className="d-flex">
-        <div>
-          <Sidebar />
-        </div>
+        <div>{token && <Sidebar />}</div>
         <div className="page-content">
-          <div>
-            <Search />
-          </div>
+          <div>{token && <Search />}</div>
           <div>
             <Routes>
-              <Route path="/" element={<Home />} />
               <Route path="/mockman" element={<Mockman />} />
+              <Route
+                path="/"
+                element={
+                  <RequiresAuth>
+                    <Home />
+                  </RequiresAuth>
+                }
+              />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
-            <NoteCard/>
-            <SaveNotes/>
           </div>
         </div>
       </div>
