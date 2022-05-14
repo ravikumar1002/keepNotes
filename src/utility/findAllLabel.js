@@ -2,7 +2,7 @@ export const findAllLabel = (state) => {
 
     const labelReduceFn = (acc, curr) => {
         const removeDuplicate = curr.label.map((label) => {
-             const findINAcc = acc.find((value => value.label === label.label))
+             const findINAcc = acc.find((value => value._id === label._id))
              if(!findINAcc) {
                  return label
              }
