@@ -24,8 +24,6 @@ export const NoteCard = ({
         updateNotes ? { ...notesValue } : { ...defaultValue }
     );
 
-console.log(notesData)
-
     return (
         <div
             className="note-card"
@@ -69,7 +67,6 @@ console.log(notesData)
                 )}
                 {updateNotes && (
                     <button className="btn-sm btn-primary border-squre" onClick={() => {
-                        console.log(notesValue)
                         updateNotesFn( notesData,notesValue._id, token)
                         setupdateNotes(false)
                     }}>Update</button>

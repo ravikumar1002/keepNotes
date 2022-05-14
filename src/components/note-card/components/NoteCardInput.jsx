@@ -7,9 +7,9 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
     const [label, setLabel] = useState([])
     const { userDataState } = useUserData()
     const [activeBtn, setActivebtn] = useState()
-     const [showLabel, setShowLabel] = useState(false)
-    const [showSelectedLabel, setShowSelectedLabel] =  useState([])
-
+    const [showLabel, setShowLabel] = useState(false)
+    const [showSelectedLabel, setShowSelectedLabel] = useState([])
+    const [newLabel, setNewlabel] = useState("")
 
     function textAreaAdjust(e) {
         e.target.style.height = "1px";
@@ -28,8 +28,13 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
     useEffect(() => {
         const getLabel = findAllLabel(userDataState.allNotes)
         setLabel(getLabel)
-        // setShowSelectedLabel(getLabel)
+
     }, [])
+
+    useEffect(() => {
+        console.log(label,showSelectedLabel)
+    }, [showSelectedLabel])
+
 
     const priorityType = [{
         id: 1,
@@ -44,6 +49,23 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
         text: "Low"
     },
     ]
+
+    const createLable = (e, oldLabels, currentLables) => {
+        const findCreatedOrNot = oldLabels.find((label) => label.label.toLowerCase() === e.target.value.toLowerCase())
+        const findlabesCreatedOrNot = currentLables.find((label) => label.label.toLowerCase() === e.target.value.toLowerCase())
+
+        if (!findCreatedOrNot && !findlabesCreatedOrNot) {
+            setShowSelectedLabel((prev) => [...prev, { _id: uuid(), label: e.target.value }])
+            setNewlabel("")
+        }else {
+            alert("already exites")
+        }
+    }
+
+    const revoveSelectedLabel = (labelId, allSelectedLabels) => {
+        const removeLabel = allSelectedLabels.filter(label => label._id === labelId ? false : true)
+        setShowSelectedLabel([...removeLabel])
+    }
 
     return (
         <div className="input-section">
@@ -91,61 +113,52 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
             </div>
             <div style={{ justifyContent: "space-between" }}>
                 <div className="my-1 p-1">
-                    {/* <label htmlFor="label" className="mr-2">
-                        Choose a label:
-                    </label>
-                    <select
-                        name="label"
-                        id="label"
-                        onChange={(e) => {
-                            addInputValueTotheServer("label", e.target.value);
-                        }}
-                        value={notesData.label}
-                    >
-                        <option value="">--Please choose an option--</option>
-                        <option value="home">home</option>
-                        <option value="work">work</option>
-                    </select> */}
 
                     <div>
-                        {/* {showSelectedLabel && showSelectedLabel.map((label) => {
-                            return (
-                                <span>{label}</span>
-                            )
-                        })} */}
-                            <button className="btn-sm btn-primary border-squre" onClick={ () => {
-                                setShowLabel(!showLabel)
-                            }}>{showLabel? "close" : "Add"}</button>
-                            {showLabel && <ul className="list-style-none label-wrapper">
-                                <li className="label-li">
-                                    <label htmlFor="home">
-                                        <input type="checkbox" id="home" className="label"  onClick={(e) => {
-                                        // console.log(e)
-                                        addInputValueTotheServer("label", [...notesData.label, {_id:uuid(), label: e.target.id} ]);
-                                        setShowSelectedLabel((prev) => [...prev, {_id:uuid(), label: e.target.id}])
-                                    }}/>
-                                        <span>Home</span>
-                                    </label>
-                                </li>
-                                <li className="label-li">
-                                    <label htmlFor="WORK">
-                                        <input type="checkbox" id="WORK" className="label" onClick={(e) => {
-                                        // console.log(e)
-                                        addInputValueTotheServer("label", [...notesData.label, {_id:uuid(), label: e.target.id} ]);
-                                        setShowSelectedLabel((prev) => [...prev, {_id:uuid(), label: e.target.id}])
-                                    }}/>
-                                        <span>WORK</span>
-                                    </label>
-                                </li>
+                        <div>
+                            {showSelectedLabel.length > 0 && showSelectedLabel.map((label) => {
+                                return (
+                                    <span key={label._id}>{label.label} <i onClick={() => {
+                                        revoveSelectedLabel(label._id, showSelectedLabel)
+                                    }}> +</i></span>
+                                )
+                            })}
+                        </div>
 
-                                <li className="label-li">
-                                   <input type="text" name="" id="" onKeyDown={(e) => {
-                                       if(e.key === "Enter"){
-                                               
-                                       }
-                                   }}/>
-                                </li>
-                            </ul>}
+                        <button className="btn-sm btn-primary border-squre" onClick={() => {
+                            setShowLabel(!showLabel)
+                        }}>{showLabel ? "close" : "Add"}</button>
+
+                        {showLabel && <ul className="list-style-none label-wrapper">
+                            <li className="label-li">
+                                <label htmlFor="home">
+                                    <input type="checkbox" id="home" className="label" onClick={(e) => {
+                                        addInputValueTotheServer("label", [...notesData.label, { _id: uuid(), label: e.target.id }]);
+                                        setShowSelectedLabel((prev) => [...prev, { _id: uuid(), label: e.target.id }])
+                                    }} />
+                                    <span>Home</span>
+                                </label>
+                            </li>
+                            <li className="label-li">
+                                <label htmlFor="WORK">
+                                    <input type="checkbox" id="WORK" className="label" onClick={(e) => {
+                                        addInputValueTotheServer("label", [...notesData.label, { _id: uuid(), label: e.target.id }]);
+                                        setShowSelectedLabel((prev) => [...prev, { _id: uuid(), label: e.target.id }])
+                                    }} />
+                                    <span>WORK</span>
+                                </label>
+                            </li>
+
+                            <li className="label-li">
+                                <input type="text" name="" id="" value={newLabel} onKeyDown={(e) => {
+                                    if (e.key === "Enter") {
+                                        createLable(e, label,showSelectedLabel )
+                                    }
+                                }} onChange={(e) => {
+                                    setNewlabel(e.target.value)
+                                }} />
+                            </li>
+                        </ul>}
                     </div>
 
                 </div>

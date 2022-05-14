@@ -54,11 +54,6 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                                     </div>
                                 );
                             })}
-                        {/* {userCreatedNotes.label.length > 0 &&
-                               <div className="btn-secondary btn-x-sm border-pill">
-                                    {userCreatedNotes.label}
-                                </div>  
-                            } */}
                     </div>
                     <div className="flex-space-between p-1 d-flex gap-1">
                         <div>
