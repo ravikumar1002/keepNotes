@@ -21,6 +21,10 @@
   align-content: center;
 }
 
+.flex-wrap{
+  flex-wrap: wrap;
+}
+
 .gap-2 {
   gap: 1rem;
 }

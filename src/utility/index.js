@@ -1,0 +1,1 @@
+export {findAllLabel} from "./findAllLabel"
