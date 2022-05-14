@@ -28,7 +28,8 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
     useEffect(() => {
         const getLabel = findAllLabel(userDataState.allNotes);
         setLabel(getLabel);
-    }, []);
+    }, [userDataState]);
+    console.log(label)
 
     const priorityType = [
         {
@@ -140,7 +141,7 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                         >
                             {showLabel ? "close" : "Add"}
                         </button>
-                        {showLabel && <Label av={{ label, checkAlredayAddLabelInCurrentNotes, removeSelectedLabel, notesData, newLabel, setNewlabel, createLable, addInputValueTotheServer }} />}
+                        {showLabel && <Label labelValue={{ label, checkAlredayAddLabelInCurrentNotes, removeSelectedLabel, notesData, newLabel, setNewlabel, createLable, addInputValueTotheServer }} />}
                     </div>
                 </div>
                 <ColorPalettes addInputValueTotheServer={addInputValueTotheServer} notesData={notesData} />

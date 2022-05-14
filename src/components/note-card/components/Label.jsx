@@ -1,4 +1,4 @@
-export const Label = ({ av }) => {
+export const Label = ({ labelValue }) => {
     const {
         label,
         checkAlredayAddLabelInCurrentNotes,
@@ -8,7 +8,9 @@ export const Label = ({ av }) => {
         setNewlabel,
         createLable,
         addInputValueTotheServer,
-    } = av;
+    } = labelValue;
+
+    console.log(label);
     return (
         <ul className="list-style-none label-wrapper">
             {label.length > 0 &&

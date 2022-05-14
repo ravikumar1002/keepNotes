@@ -1,6 +1,7 @@
-export const findAllLabel = (state) => {
+export const findAllLabel = (ladelData) => {
 
     const labelReduceFn = (acc, curr) => {
+        console.log(acc, curr)
         const removeDuplicate = curr.label.map((label) => {
              const findINAcc = acc.find((value => value._id === label._id))
              if(!findINAcc) {
@@ -12,6 +13,6 @@ export const findAllLabel = (state) => {
         return (acc = [...saveLabel]);
     };
 
-    const labelData = state.reduce(labelReduceFn, []);
+    const labelData = ladelData.reduce(labelReduceFn, []);
     return labelData
 };
