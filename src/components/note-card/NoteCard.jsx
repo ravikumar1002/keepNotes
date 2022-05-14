@@ -15,7 +15,7 @@ export const NoteCard = ({
         heading: "",
         noteDetail: "",
         priority: "",
-        label: "",
+        label: [],
         color: "",
         pin: false,
     };

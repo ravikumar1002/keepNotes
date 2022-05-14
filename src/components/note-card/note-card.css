@@ -3,7 +3,6 @@
   padding: 1rem;
   border: 1px solid rgb(205, 205, 205);
   border-radius: 5px;
-
 }
 /* 
 .pin-btn {
@@ -11,8 +10,8 @@
   background-color: blueviolet;
 } */
 
-.input-section  select {
-    width: 5rem;
+.input-section select {
+  width: 5rem;
 }
 
 .note-input-textarea {
@@ -40,4 +39,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.activeButton {
+  color: beige;
+  background-color: black;
+}
+
+.label-wrapper {
+  position: absolute;
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: aliceblue;
+}
+/* 
+.label-li {
+  padding: 0.5rem;
+} */
+
+.label-li > label > input {
+  height: 0.9rem;
+  width: 0.9rem;
+  margin: 0 0.5rem;
+}
+
+.label-li label,  .label-li:last-child{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.5rem;
+
+}
+
+.label-li:hover {
+  background-color: antiquewhite;
 }

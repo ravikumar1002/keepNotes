@@ -46,19 +46,19 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                                 {userCreatedNotes.priority}
                             </div>
                         )}
-                        {/* {userCreatedNotes.label.length > 0 &&
+                        {userCreatedNotes.label.length > 0 &&
                             userCreatedNotes.label.map((label) => {
                                 return (
-                                    <div className="btn-secondary btn-x-sm border-pill">
-                                        {label}
+                                    <div className="btn-secondary btn-x-sm border-pill" key={label._id}>
+                                        {label.label}
                                     </div>
                                 );
-                            })} */}
-                        {userCreatedNotes.label.length > 0 &&
+                            })}
+                        {/* {userCreatedNotes.label.length > 0 &&
                                <div className="btn-secondary btn-x-sm border-pill">
                                     {userCreatedNotes.label}
                                 </div>  
-                            }
+                            } */}
                     </div>
                     <div className="flex-space-between p-1 d-flex gap-1">
                         <div>
