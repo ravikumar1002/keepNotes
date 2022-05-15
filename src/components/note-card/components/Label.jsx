@@ -10,7 +10,6 @@ export const Label = ({ labelValue }) => {
         addInputValueTotheServer,
     } = labelValue;
 
-    console.log(label);
     return (
         <ul className="list-style-none label-wrapper">
             {label.length > 0 &&

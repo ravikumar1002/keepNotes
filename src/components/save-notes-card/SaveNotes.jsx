@@ -28,9 +28,9 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                     style={{ backgroundColor: `${userCreatedNotes.color}` }}
                 >
                     <div className="input-section">
-                        <div className="note-card-heading mb-1">
+                        <div className="note-card-heading mb-1 w-100% flex-between">
                             <h2 className="word-break-all">
-                                {userCreatedNotes.heading}
+                               {userCreatedNotes.heading}
                             </h2>
                             <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-round align_self-flex-start"></button>
                         </div>
@@ -56,8 +56,9 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                             })}
                     </div>
                     <div className="flex-space-between p-1 d-flex gap-1">
-                        <div>
-                            <p>created on</p>
+                        <div className="flex-col" style={{marginRight: "5px"}}>
+                            <small>Created on</small>
+                            <small>{userCreatedNotes.createdDate.date}</small>
                         </div>
                         <div className="align-self-start d-flex gap-1">
                             <button className="btn-primary btn-sm border-round">

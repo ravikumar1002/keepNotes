@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NotesCardInput } from "./components/NoteCardInput";
+import { getCurrentDate , getCurrentTime} from "../../utility";
 import "./note-card.css";
 export const NoteCard = ({
     createNotes,
@@ -18,6 +19,7 @@ export const NoteCard = ({
         label: [],
         color: "",
         pin: false,
+        createdDate: {date:"", time: "" },
     };
 
     const [notesData, setNotesData] = useState(
@@ -45,7 +47,7 @@ export const NoteCard = ({
                     <button
                         className="btn-sm btn-primary border-squre"
                         onClick={() => {
-                            createNewNotes(notesData, token);
+                            createNewNotes({...notesData, createdDate: {date: getCurrentDate(), time: getCurrentTime()} }, token);
                             setNotesData({ ...defaultValue });
                             setCreateNotes(false)
 
