@@ -1,6 +1,5 @@
 export const ColorPalettes = ({ addInputValueTotheServer, notesData }) => {
     return (
-        <div className="note-card-footer">
             <div className="d-flex gap-1">
                 <label htmlFor="color-select"></label>
                 <input
@@ -12,6 +11,5 @@ export const ColorPalettes = ({ addInputValueTotheServer, notesData }) => {
                     }}
                 />
             </div>
-        </div>
     );
 };

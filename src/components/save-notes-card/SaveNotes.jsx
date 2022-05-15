@@ -28,14 +28,14 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                     style={{ backgroundColor: `${userCreatedNotes.color}` }}
                 >
                     <div className="input-section">
-                        <div className="note-card-heading">
-                            <h2 className="note-input-textarea">
+                        <div className="note-card-heading mb-1">
+                            <h2 className="word-break-all">
                                 {userCreatedNotes.heading}
                             </h2>
-                            <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-round"></button>
+                            <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-round align_self-flex-start"></button>
                         </div>
-                        <div className="note-card-content">
-                            <p className="note-input-textarea">
+                        <div className="note-card-content mb-1 mt-1">
+                            <p className="word-break-all">
                                 {userCreatedNotes.noteDetail}
                             </p>
                         </div>
