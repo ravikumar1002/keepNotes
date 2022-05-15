@@ -40,18 +40,18 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                             </p>
                         </div>
                     </div>
-                    <div className=" p-1 d-flex gap-1">
+                    <div className="p-1 d-flex gap-1 flex-wrap">
                         {userCreatedNotes.priority && (
-                            <div className="btn-secondary btn-x-sm border-pill">
+                            <span className="added-label" >
                                 {userCreatedNotes.priority}
-                            </div>
+                            </span>
                         )}
                         {userCreatedNotes.label.length > 0 &&
                             userCreatedNotes.label.map((label) => {
                                 return (
-                                    <div className="btn-secondary btn-x-sm border-pill" key={label._id}>
+                                    <span className="added-label" key={label._id}>
                                         {label.label}
-                                    </div>
+                                    </span>
                                 );
                             })}
                     </div>

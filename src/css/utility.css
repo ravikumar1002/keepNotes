@@ -29,6 +29,10 @@
   gap: 1rem;
 }
 
+.m-1{
+  margin: 0.5rem;
+}
+
 .m-2 {
   margin: 1rem;
 }
@@ -41,12 +45,16 @@
   margin-right: 1.5rem;
 }
 
+.my-1{
+  margin: 0 0.5rem ;
+}
+
 .mt-1 {
   margin-top: 0.5rem;
 }
 
 .mx-1{
-  margin: 0 1rem;
+  margin: 0 0.5rem;
 }
 
 .mt-4 {
@@ -89,8 +97,8 @@
   width: 100%;
 }
 
-.gap-2 {
-  gap: 1rem;
+.gap-1{
+  gap: 0.5rem;
 }
 
 .pointer {

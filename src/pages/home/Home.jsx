@@ -13,16 +13,14 @@ export const Home = () => {
         createNewNotesInDB(note, token, userDataDispatch)
     }
 
-
     return (
         <div>
             <div>
-                <p> create new notes </p>
-                {!createNotes && <button onClick={() => setCreateNotes(!createNotes)}>CreateNotes</button>}
+                {!createNotes && <button onClick={() => setCreateNotes(!createNotes)} className="btn-sm btn-primary border-squre m-2"> + CreateNotes</button>}
                 {createNotes && <NoteCard createNotes={createNotes} setCreateNotes={setCreateNotes} token={token} createNewNotes={createNewNotes} />}
             </div>
             <div>
-                pin notes
+
             </div>
             <div className="d-flex gap-2 flex-wrap">
                 {userDataState.allNotes.length > 0 && userDataState.allNotes.map((note) => {
@@ -35,3 +33,4 @@ export const Home = () => {
         </div>
     )
 }
+

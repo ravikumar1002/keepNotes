@@ -53,6 +53,8 @@
   flex-direction: column;
   gap: 0.5rem;
   background-color: aliceblue;
+  max-height: 17rem;
+  overflow: overlay;
 }
 /* 
 .label-li {
@@ -77,3 +79,14 @@
 .label-li:hover {
   background-color: antiquewhite;
 }
+
+.added-label{
+  border-radius: 5px;
+  padding: 0.5rem;
+  background: antiquewhite;
+  /* margin: 0.5rem 0 0.5rem 0.5rem; */
+  display: inline-block;
+}
+
+
+

@@ -29,7 +29,6 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
         const getLabel = findAllLabel(userDataState.allNotes);
         setLabel(getLabel);
     }, [userDataState]);
-    console.log(label)
 
     const priorityType = [
         {
@@ -48,16 +47,16 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
 
     const createLable = (e, oldLabels, currentLables) => {
         const findCreatedOrNot = oldLabels.find(
-            (label) => label.label.toLowerCase() === e.target.value.toLowerCase()
+            (label) => label.label.toLowerCase() === e.target.value.toLowerCase().trim()
         );
         const findlabesCreatedOrNot = currentLables.find(
-            (label) => label.label.toLowerCase() === e.target.value.toLowerCase()
+            (label) => label.label.toLowerCase() === e.target.value.toLowerCase().trim()
         );
 
-        if (!findCreatedOrNot && !findlabesCreatedOrNot) {
+        if (!findCreatedOrNot && !findlabesCreatedOrNot && e.target.value.trim().length > 0) {
             addInputValueTotheServer("label", [
                 ...notesData.label,
-                { _id: uuid(), label: e.target.value },
+                { _id: uuid(), label: e.target.value.trim() },
             ]);
             setNewlabel("");
         } else {
@@ -113,20 +112,19 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                 </div>
             </div>
             <div style={{ justifyContent: "space-between" }}>
-                <div className="my-1 p-1">
+                <div className="p-1">
                     <div>
-                        <div>
+                        <div className="d-flex gap-1 flex-wrap">
                             {notesData.label.length > 0 &&
                                 notesData.label.map((label) => {
                                     return (
-                                        <span key={label._id}>
+                                        <span key={label._id} className= "added-label" >
                                             {label.label}
-                                            <i
+                                            <i  className="fa fa-times mx-1"
                                                 onClick={() => {
                                                     removeSelectedLabel(label._id, notesData.label);
                                                 }}
-                                            >
-                                                +
+                                            >        
                                             </i>
                                         </span>
                                     );
@@ -134,12 +132,12 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                         </div>
 
                         <button
-                            className="btn-sm btn-primary border-squre"
+                            className="btn-sm btn-primary border-squre m-1"
                             onClick={() => {
                                 setShowLabel(!showLabel);
                             }}
                         >
-                            {showLabel ? "close" : "Add"}
+                            {showLabel ? "close" : "Add Label"}
                         </button>
                         {showLabel && <Label labelValue={{ label, checkAlredayAddLabelInCurrentNotes, removeSelectedLabel, notesData, newLabel, setNewlabel, createLable, addInputValueTotheServer }} />}
                     </div>
