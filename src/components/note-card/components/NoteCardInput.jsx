@@ -141,6 +141,7 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                                     setNewlabel,
                                     createLable,
                                     addInputValueTotheServer,
+                                    setShowLabel,
                                 }}
                             />
                         )}

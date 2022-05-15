@@ -1,3 +1,4 @@
+import { useRef , useEffect} from "react";
 export const Label = ({ labelValue }) => {
     const {
         label,
@@ -8,7 +9,19 @@ export const Label = ({ labelValue }) => {
         setNewlabel,
         createLable,
         addInputValueTotheServer,
+        setShowLabel
     } = labelValue;
+    const container = useRef();
+    
+    const handleClickOutside = (e) => {
+        if (container?.current && !container?.current?.contains(e.target)) {
+            setShowLabel(false)
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <ul className="list-style-none label-wrapper">
@@ -44,11 +57,10 @@ export const Label = ({ labelValue }) => {
                     );
                 })}
 
-            <li className="label-li">
+            <li className="label-li" >
                 <input
                     type="text"
-                    name=""
-                    id=""
+                    name="createLabel container"
                     value={newLabel}
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
@@ -58,6 +70,7 @@ export const Label = ({ labelValue }) => {
                     onChange={(e) => {
                         setNewlabel(e.target.value);
                     }}
+                    ref={container}
                 />
             </li>
         </ul>
