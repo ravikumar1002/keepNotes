@@ -1,54 +1,142 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
+import { findAllLabel } from "../../../utility";
+import { useUserData } from "../../../context/user-data-context";
+import {
+    ColorPalettes,
+    Label,
+    TextArea,
+    Priority,
+    ShowSelectedLabel,
+} from "../components";
+import { v4 as uuid } from "uuid";
 
-export const NotesCardInput = () => {
+export const NotesCardInput = ({ setNotesData, notesData }) => {
+    const [label, setLabel] = useState([]);
+    const { userDataState } = useUserData();
+    const [newLabel, setNewlabel] = useState("");
 
-    const [inputNoteData, setInputNotesData] = useState({
-        heading: "",
-        content: "",
-    })
+    const addInputValueTotheServer = (key, value) => {
+        setNotesData((prev) => {
+            return {
+                ...prev,
+                [key]: value,
+            };
+        });
+    };
 
-    function textAreaAdjust(e) {
-        e.target.style.height = "1px";
-        e.target.style.height = (e.target.scrollHeight) + "px";
-    }
+    useEffect(() => {
+        const getLabel = findAllLabel(userDataState.allNotes);
+        setLabel(getLabel);
+    }, [userDataState]);
+
+    const priorityType = [
+        {
+            id: 1,
+            text: "High",
+        },
+        {
+            id: 2,
+            text: "Medium",
+        },
+        {
+            id: 3,
+            text: "Low",
+        },
+    ];
+
+    const createLable = (e, oldLabels, currentLables) => {
+        const findCreatedOrNot = oldLabels.find(
+            (label) =>
+                label.label.toLowerCase() === e.target.value.toLowerCase().trim()
+        );
+        const findlabesCreatedOrNot = currentLables.find(
+            (label) =>
+                label.label.toLowerCase() === e.target.value.toLowerCase().trim()
+        );
+
+        if (
+            !findCreatedOrNot &&
+            !findlabesCreatedOrNot &&
+            e.target.value.trim().length > 0
+        ) {
+            addInputValueTotheServer("label", [
+                ...notesData.label,
+                { _id: uuid(), label: e.target.value.trim() },
+            ]);
+            setNewlabel("");
+        } else {
+            alert("already exites");
+        }
+    };
+
+    const removeSelectedLabel = (labelId, allSelectedLabels) => {
+        const removeLabel = allSelectedLabels.filter((label) =>
+            label._id === labelId ? false : true
+        );
+        addInputValueTotheServer("label", [...removeLabel]);
+    };
+
+    const checkAlredayAddLabelInCurrentNotes = (saveLabel, savedLabelDB) => {
+        const findDataINsaveNotes = savedLabelDB.label.find(
+            (label) => saveLabel._id === label._id
+        );
+        if (findDataINsaveNotes) {
+            return true;
+        }
+    };
 
     return (
         <div className="input-section">
             <div className="note-card-heading">
-                <textarea onChange={(e) => textAreaAdjust(e)} className="note-input-textarea fs-md fw-700" placeholder="Type Heading"></textarea>
-                <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-round"></button>
+                <TextArea
+                    textAreaState={{
+                        addInputValueTotheServer,
+                        style: "fs-md fw-700",
+                        placeholderText: "Type Heading",
+                        textAreaValue: notesData.heading,
+                        objctKey: "heading",
+                    }}
+                />
+                <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-round align_self-flex-start"></button>
             </div>
             <div className="note-card-content">
-                <textarea onChange={(e) => textAreaAdjust(e)} className="note-input-textarea fs-sm" placeholder="Type Note"></textarea>
+                <TextArea
+                    textAreaState={{
+                        addInputValueTotheServer,
+                        style: "fs-sm",
+                        placeholderText: "Type Note",
+                        textAreaValue: notesData.noteDetail,
+                        objctKey: "noteDetail",
+                    }}
+                />
             </div>
             <div className="p-1">
-                <label htmlFor="priority">Choose a priority:</label>
-                <select name="priority" id="priority">
-                    <option value="">--Please choose an option--</option>
-                    <option value="high">High</option>
-                    <option value="meduim">medium</option>
-                    <option value="low">low</option>
-                </select>
+                <Priority priority={{ addInputValueTotheServer, priorityType }} />
             </div>
-            <div style={{justifyContent: "space-between"}}>
-                <div className="my-1 p-1">
-                    <label htmlFor="priority" className="mr-2">Choose a label:</label>
-                    <select name="priority" id="priority">
-                        <option value="">--Please choose an option--</option>
-                        <option value="high">High</option>
-                        <option value="meduim">medium</option>
-                        <option value="low">low</option>
-                    </select>
-                </div>
-                <div className="note-card-footer">
-                    <div className="d-flex gap-1">
-                        <button className="btn-primary btn-sm border-round">
-                            <label htmlFor="color-select" className="fa-solid fa-palette"></label>
-                            <input type="color" id="color-select" style={{ position: "absolute", visibility: "hidden" }} />
-                        </button>
+            <div className="flex-col">
+                <ShowSelectedLabel selectedLabel={{ notesData, removeSelectedLabel }} />
+                <div className="p-1 w-100">
+                    <div className="flex-space_between-align-item_center pos-rel">
+                        <Label
+                            labelValue={{
+                                label,
+                                checkAlredayAddLabelInCurrentNotes,
+                                removeSelectedLabel,
+                                notesData,
+                                newLabel,
+                                setNewlabel,
+                                createLable,
+                                addInputValueTotheServer,
+                            }}
+                        />
+
+                        <ColorPalettes
+                            addInputValueTotheServer={addInputValueTotheServer}
+                            notesData={notesData}
+                        />
                     </div>
                 </div>
             </div>
-        </div>
-    )
-} 
+        </div >
+    );
+};

@@ -1,17 +1,8 @@
 .note-card {
-  width: 30rem;
+  width: 25rem;
   padding: 1rem;
   border: 1px solid rgb(205, 205, 205);
   border-radius: 5px;
-}
-/* 
-.pin-btn {
-  color: white;
-  background-color: blueviolet;
-} */
-
-.input-section  select {
-    width: 5rem;
 }
 
 .note-input-textarea {
@@ -22,7 +13,7 @@
   padding: 0.5rem;
   line-height: 1.5rem;
   flex-grow: 2;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .note-input-textarea:focus {
@@ -32,7 +23,7 @@
 .input-section > div {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .note-card-footer {
@@ -40,3 +31,60 @@
   justify-content: space-between;
   align-items: center;
 }
+
+
+.label-wrapper {
+  position: absolute;
+  padding: 0.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: aliceblue;
+  max-height: 17rem;
+  overflow: overlay;
+  top: 0;
+  right: 4.3rem;
+}
+
+.label-li > label > input {
+  height: 0.9rem;
+  width: 0.9rem;
+  margin: 0 0.5rem;
+}
+
+.label-li label,  .label-li:last-child{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.5rem;
+
+}
+
+.label-li:hover {
+  background-color: antiquewhite;
+}
+
+.added-label{
+  border-radius: 5px;
+  padding: 0.3rem;
+  background: antiquewhite;
+  display: inline-block;
+  font-size: 0.8rem;
+}
+
+
+.select {
+  display: flex;
+  width: 10rem;
+  height: 1.5rem;
+  background: #d2d2d2;
+  overflow: hidden;
+  border-radius: 5px;
+  width: 10rem;
+}
+
+.select:hover::after {
+  color: #212222;
+}
+

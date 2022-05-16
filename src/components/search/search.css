@@ -1,4 +1,9 @@
 
+.search-input-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
 .input-search {
   background: #ffffff;
   border: 1px solid #d0d0d0;
