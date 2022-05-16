@@ -57,8 +57,8 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                     </div>
                     <div className="flex-space-between p-1 d-flex gap-1">
                         <div className="flex-col" style={{marginRight: "5px"}}>
-                            <small>Created on</small>
-                            <small>{userCreatedNotes.createdDate.date}</small>
+                            <small>{userCreatedNotes?.updatedDate ? "Updates On" : "Created On"}</small>
+                            <small>{userCreatedNotes?.updatedDate ? userCreatedNotes?.updatedDate : userCreatedNotes?.createdDate}</small>
                         </div>
                         <div className="align-self-start d-flex gap-1">
                             <button className="btn-primary btn-sm border-round">

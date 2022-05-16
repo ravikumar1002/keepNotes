@@ -13,7 +13,6 @@ import { v4 as uuid } from "uuid";
 export const NotesCardInput = ({ setNotesData, notesData }) => {
     const [label, setLabel] = useState([]);
     const { userDataState } = useUserData();
-    const [showLabel, setShowLabel] = useState(false);
     const [newLabel, setNewlabel] = useState("");
 
     const addInputValueTotheServer = (key, value) => {
@@ -118,36 +117,26 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                 <ShowSelectedLabel selectedLabel={{ notesData, removeSelectedLabel }} />
                 <div className="p-1 w-100">
                     <div className="flex-space_between-align-item_center pos-rel">
-                        <button
-                            className="btn-sm btn-primary border-squre"
-                            onClick={() => {
-                                setShowLabel(!showLabel);
+                        <Label
+                            labelValue={{
+                                label,
+                                checkAlredayAddLabelInCurrentNotes,
+                                removeSelectedLabel,
+                                notesData,
+                                newLabel,
+                                setNewlabel,
+                                createLable,
+                                addInputValueTotheServer,
                             }}
-                        >
-                            {showLabel ? "close" : "Add Label"}
-                        </button>
+                        />
+
                         <ColorPalettes
                             addInputValueTotheServer={addInputValueTotheServer}
                             notesData={notesData}
                         />
-                        {showLabel && (
-                            <Label
-                                labelValue={{
-                                    label,
-                                    checkAlredayAddLabelInCurrentNotes,
-                                    removeSelectedLabel,
-                                    notesData,
-                                    newLabel,
-                                    setNewlabel,
-                                    createLable,
-                                    addInputValueTotheServer,
-                                    setShowLabel,
-                                }}
-                            />
-                        )}
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
