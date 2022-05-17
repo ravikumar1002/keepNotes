@@ -36,7 +36,7 @@ export const Sidebar = () => {
                 </span>
                 <span> Archive </span>
             </NavLink>
-            <NavLink style={getActiveStyle} to="/">
+            <NavLink style={getActiveStyle} to="/trash">
                 <span>
                     <i className="fa-solid fa-trash"></i>
                 </span>

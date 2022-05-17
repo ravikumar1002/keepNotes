@@ -1,9 +1,8 @@
-
 import axios from "axios";
 
-export const getNotes = async (token) => {
+export const getTrash = async (token) => {
     try {
-        const response = await axios.get("/api/notes", {
+        const response = await axios.get("/api/trash", {
             headers: {
                 authorization: token
             },
@@ -19,11 +18,29 @@ export const getNotes = async (token) => {
 };
 
 
-export const postNotes = async (note, authToken) => {
+export const postTrash = async (noteId, authToken) => {
+    console.log(noteId, authToken)
     try {
-        const response = await axios.post(`/api/notes`, {
-            note: note
-        },
+        const response = await axios.post(`api/notes/trash/${noteId}`,{},
+            {
+                headers: { authorization: authToken },
+            }
+        );
+        console.log(response)
+
+        if (response.status === 200 || response.status === 201) {
+            return response.data
+        }
+    } catch (error) {
+        console.log(error);
+        throw error
+    }
+};
+
+
+export const postRestoreTrash = async (noteId, authToken) => {
+    try {
+        const response = await axios.post(`/api/trash/restore/${noteId}`,{},
             {
                 headers: { authorization: authToken },
             }
@@ -38,30 +55,9 @@ export const postNotes = async (note, authToken) => {
     }
 };
 
-
-export const updateNotes = async (updatedNote, updatedNoteId, authToken) => {
+export const deleteNotesInTrash = async (noteID, authToken) => {
     try {
-        const response = await axios.post(`/api/notes/${updatedNoteId}`, {
-            note: updatedNote
-        },
-            {
-                headers: { authorization: authToken },
-            }
-        );
-
-        if (response.status === 200 || response.status === 201) {
-            return response.data
-        }
-    } catch (error) {
-        console.log(error);
-        throw error
-    }
-};
-
-
-export const deleteNotes = async (notesId, authToken) => {
-    try {
-        const response = await axios.delete(`/api/notes/${notesId}`,
+        const response = await axios.delete(`/api/trash/delete/${noteID}`,
             {
                 headers: { authorization: authToken },
             }

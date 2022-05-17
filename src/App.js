@@ -6,7 +6,7 @@ import {
   Sidebar,
   Search,
 } from "./components/index";
-import { Home, Login, SignUp } from "./pages/index";
+import { Home, Login, SignUp , Trash} from "./pages/index";
 import { RequiresAuth } from "./pages/auth/components/RequiresAuth";
 import { useAuth } from "./context/auth-context";
 
@@ -27,6 +27,14 @@ function App() {
                 element={
                   <RequiresAuth>
                     <Home />
+                  </RequiresAuth>
+                }
+              />
+              <Route
+                path="/Trash"
+                element={
+                  <RequiresAuth>
+                    <Trash />
                   </RequiresAuth>
                 }
               />

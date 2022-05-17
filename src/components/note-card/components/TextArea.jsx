@@ -11,7 +11,6 @@ export const TextArea = ({ textAreaState }) => {
     const inputRef = useRef(null)
 
     function textAreaAdjust(e) {
-        console.log(e)
         e.target.style.height = e.target.scrollHeight + "px";
     }
 
