@@ -4,7 +4,6 @@ import  { getTrash, postTrash, postRestoreTrash, deleteNotesInTrash } from "../a
 
 export const getAllTrashItem = async (token, userDataDispatch) => {
     const TrashItem = await getTrash(token)
-    console.log(TrashItem)
     userDataDispatch({
         type: "ALL_TRASH",
         payload: {
@@ -14,9 +13,7 @@ export const getAllTrashItem = async (token, userDataDispatch) => {
 }
 
 export const postTrashItem = async (noteID, token, userDataDispatch) => {
-    console.log(noteID, token, userDataDispatch)
     const TrashItem = await postTrash(noteID, token)
-    console.log(TrashItem)
     userDataDispatch({
         type: "TRASH",
         payload: {
@@ -28,7 +25,6 @@ export const postTrashItem = async (noteID, token, userDataDispatch) => {
 
 export const postRestorerashItem = async (noteID, token, userDataDispatch)  => {
     const TrashItem = await postRestoreTrash(noteID, token)
-    console.log(TrashItem)
     userDataDispatch({
         type: "TRASH",
         payload: {
@@ -40,7 +36,6 @@ export const postRestorerashItem = async (noteID, token, userDataDispatch)  => {
 
 export const deleteNoteTrashItem = async (noteID, token, userDataDispatch) => {
     const TrashItem = await deleteNotesInTrash(noteID, token) 
-    console.log(TrashItem)
     userDataDispatch({
         type: "ALL_TRASH",
         payload: {

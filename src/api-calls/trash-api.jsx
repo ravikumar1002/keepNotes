@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const getTrash = async (token) => {
     try {
@@ -19,7 +20,6 @@ export const getTrash = async (token) => {
 
 
 export const postTrash = async (noteId, authToken) => {
-    console.log(noteId, authToken)
     try {
         const response = await axios.post(`api/notes/trash/${noteId}`,{},
             {
@@ -29,9 +29,11 @@ export const postTrash = async (noteId, authToken) => {
         console.log(response)
 
         if (response.status === 200 || response.status === 201) {
+            toast.success(`Note moved in Bin`);
             return response.data
         }
     } catch (error) {
+        toast.error(`Something went wrong`);
         console.log(error);
         throw error
     }
@@ -47,9 +49,11 @@ export const postRestoreTrash = async (noteId, authToken) => {
         );
 
         if (response.status === 200 || response.status === 201) {
+            toast.success(`Successfully restore form Bin`);
             return response.data
         }
     } catch (error) {
+        toast.error(`Something went wrong`);
         console.log(error);
         throw error
     }
@@ -64,9 +68,11 @@ export const deleteNotesInTrash = async (noteID, authToken) => {
         );
 
         if (response.status === 200 || response.status === 201) {
+            toast.success(`Successfully deleted form Bin`);
             return response.data
         }
     } catch (error) {
+        toast.error(`Something went wrong`);
         console.log(error);
         throw error
     }

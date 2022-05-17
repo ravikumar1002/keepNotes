@@ -71,9 +71,6 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                                 <i className="fa-solid fa-pen"></i>
                             </button>
                             <button className="btn-danger btn-sm border-round" onClick={ () => {
-                                console.log(token)
-                                // console.log(token , userCreatedNotes, "s")
-                                console.log(userCreatedNotes._id, token, userDataDispatch)
                                 postTrashItem(userCreatedNotes._id, token, userDataDispatch)
                             }}>
                                 <i className="fa-solid fa-trash"></i>

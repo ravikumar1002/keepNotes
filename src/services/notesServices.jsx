@@ -3,7 +3,6 @@ import { getUserData, getNotes , postNotes, updateNotes, deleteNotes} from "../a
 
 export const createNewNotesInDB = async(note, token, userDataDispatch) => {
     const dataNewNotes =  await postNotes(note, token)
-    console.log(dataNewNotes)
     userDataDispatch({
         type: "ALL_NOTES",
         payload: {

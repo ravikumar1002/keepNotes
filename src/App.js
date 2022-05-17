@@ -1,14 +1,12 @@
 import "./App.css";
 import Mockman from "mockman-js";
+import "react-toastify/dist/ReactToastify.min.css";
 import { Routes, Route } from "react-router-dom";
-import {
-  Header,
-  Sidebar,
-  Search,
-} from "./components/index";
-import { Home, Login, SignUp , Trash} from "./pages/index";
+import { Header, Sidebar, Search } from "./components/index";
+import { Home, Login, SignUp, Trash } from "./pages/index";
 import { RequiresAuth } from "./pages/auth/components/RequiresAuth";
 import { useAuth } from "./context/auth-context";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { token } = useAuth();
@@ -41,6 +39,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/login" element={<Login />} />
             </Routes>
+            <ToastContainer position="top-right" autoClose={700} draggable />
           </div>
         </div>
       </div>
