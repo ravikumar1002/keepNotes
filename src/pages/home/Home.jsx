@@ -23,7 +23,7 @@ export const Home = () => {
 
             </div>
             <div className="d-flex gap-2 flex-wrap">
-                {userDataState.allNotes.length > 0 && userDataState.allNotes.map((note) => {
+                {userDataState?.allNotes.length > 0 && userDataState?.allNotes.map((note) => {
                     return (
                             <SaveNotes userCreatedNotes={note} key= {note._id}/>
                     )
