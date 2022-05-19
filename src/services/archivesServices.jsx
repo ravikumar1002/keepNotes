@@ -4,7 +4,6 @@ import  {getArchives, postArchives, postRestoreArchives, deleteNotesInArchives} 
 
 export const getAllArchivesItem = async (token, userDataDispatch) => {
     const archivesItem = await getArchives(token)
-    console.log(archivesItem)
     userDataDispatch({
         type: "ALL_ARCHIVES",
         payload: {
@@ -14,9 +13,7 @@ export const getAllArchivesItem = async (token, userDataDispatch) => {
 }
 
 export const postArchivesItem = async (noteID, note, token, userDataDispatch) => {
-    console.log (noteID, note, token, userDataDispatch)
     const archivesItem = await postArchives(noteID,note, token)
-    console.log(archivesItem)
     userDataDispatch({
         type: "ARCHIVES",
         payload: {
@@ -28,7 +25,6 @@ export const postArchivesItem = async (noteID, note, token, userDataDispatch) =>
 
 export const postRestoreArchivesItem = async (noteID, token, userDataDispatch)  => {
     const archivesItem = await postRestoreArchives(noteID, token)
-    console.log(archivesItem)
     userDataDispatch({
         type: "ARCHIVES",
         payload: {
@@ -40,7 +36,6 @@ export const postRestoreArchivesItem = async (noteID, token, userDataDispatch)  
 
 export const deleteNoteArchivesItem = async (noteID, token, userDataDispatch) => {
     const archivesItem = await deleteNotesInArchives(noteID, token) 
-    console.log(archivesItem)
     userDataDispatch({
         type: "ALL_ARCHIVES",
         payload: {

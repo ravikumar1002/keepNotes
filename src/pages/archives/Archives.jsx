@@ -11,8 +11,6 @@ export const Archives = () => {
         getAllArchivesItem(token, userDataDispatch)
     },[])
 
-    console.log(userDataState)
-
     return (
         <div>
             Archives

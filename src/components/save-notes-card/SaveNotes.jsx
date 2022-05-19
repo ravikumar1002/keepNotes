@@ -13,8 +13,7 @@ export const SaveNotes = ({ userCreatedNotes }) => {
     const updateNotesFn = (updatedNotes, oldNotesId, token) => {
         updateNotesInDB(updatedNotes, oldNotesId, token, userDataDispatch)
     };
-    console.log(userCreatedNotes, "sd")
-    console.log(location)
+
     return (
         <>
             {updateNotes ? (
