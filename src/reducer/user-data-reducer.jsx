@@ -17,6 +17,20 @@ export const userData = (state, action) => {
             ...state, 
             trashNotes: action.payload.trash,
         }
+
+        case "ALL_ARCHIVES" : 
+        return {
+            ...state, 
+            archiveNotes: action.payload.archives,
+        }
+
+        case "ARCHIVES": 
+        return {
+            ...state, 
+            archiveNotes: action.payload.archives,
+            allNotes: action.payload.notes
+        }
+        
         
         default:
             break;

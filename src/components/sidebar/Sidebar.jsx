@@ -30,7 +30,7 @@ export const Sidebar = () => {
                 </span>
                 <span> Labels </span>
             </NavLink>
-            <NavLink style={getActiveStyle} to="/">
+            <NavLink style={getActiveStyle} to="/archives">
                 <span>
                     <i className="fa-solid fa-box-archive"></i>
                 </span>

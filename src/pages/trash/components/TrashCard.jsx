@@ -1,5 +1,5 @@
 
-import { postRestorerashItem, deleteNoteTrashItem } from "../../../services"
+import { postRestoreTrashItem, deleteNoteTrashItem } from "../../../services"
 import { useUserData } from "../../../context/user-data-context"
 import { useAuth } from "../../../context/auth-context"
 import "./trash-card.css"
@@ -27,7 +27,7 @@ const TrashCard = ({ trashNote }) => {
                     deleteNoteTrashItem(trashNote._id, token, userDataDispatch)
                 }}> </button>
                 <button className="btn-sm fas fa-trash-restore btn-primary border-squre" onClick={() => {
-                    postRestorerashItem(trashNote._id, token, userDataDispatch)
+                    postRestoreTrashItem(trashNote._id, token, userDataDispatch)
                 }}></button>
             </div>
         </div>
