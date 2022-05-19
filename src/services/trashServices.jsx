@@ -23,7 +23,7 @@ export const postTrashItem = async (noteID, token, userDataDispatch) => {
     })
 }
 
-export const postRestorerashItem = async (noteID, token, userDataDispatch)  => {
+export const postRestoreTrashItem = async (noteID, token, userDataDispatch)  => {
     const TrashItem = await postRestoreTrash(noteID, token)
     userDataDispatch({
         type: "TRASH",
