@@ -42,7 +42,7 @@ export const postNotes = async (note, authToken) => {
 };
 
 
-export const updateNotes = async (updatedNote, updatedNoteId, authToken) => {
+export const updateNotes = async (updatedNote, updatedNoteId, authToken, msg) => {
     try {
         const response = await axios.post(`/api/notes/${updatedNoteId}`, {
             note: updatedNote
@@ -53,7 +53,7 @@ export const updateNotes = async (updatedNote, updatedNoteId, authToken) => {
         );
 
         if (response.status === 200 || response.status === 201) {
-            toast.success(`Note updated`);
+            toast.success(msg);
             return response.data
         }
     } catch (error) {

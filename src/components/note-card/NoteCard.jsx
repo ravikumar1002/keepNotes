@@ -69,7 +69,7 @@ export const NoteCard = ({
                 )}
                 {updateNotes && (
                     <button className="btn-sm btn-primary border-squre" onClick={() => {
-                        updateNotesFn( {...notesData,  updatedDate: getCurrentDate() },notesValue._id, token)
+                        updateNotesFn( {...notesData,  updatedDate: getCurrentDate() },notesValue._id, token,"Note Updated" )
                         setupdateNotes(false)
                     }}>Update</button>
                 )}

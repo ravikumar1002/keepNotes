@@ -97,7 +97,13 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                         objctKey: "heading",
                     }}
                 />
-                <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-round align_self-flex-start"></button>
+                {notesData.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
+                    addInputValueTotheServer("pin", false)
+                }} ></button> :
+                    <button className="far fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
+                        addInputValueTotheServer("pin", true)
+                    }}></button>
+                }
             </div>
             <div className="note-card-content">
                 <TextArea

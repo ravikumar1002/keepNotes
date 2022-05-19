@@ -10,8 +10,8 @@ export const SaveNotes = ({ userCreatedNotes }) => {
     const [updateNotes, setupdateNotes] = useState(false);
     const { userDataDispatch } = useUserData()
     const { token } = useAuth()
-    const updateNotesFn = (updatedNotes, oldNotesId, token) => {
-        updateNotesInDB(updatedNotes, oldNotesId, token, userDataDispatch)
+    const updateNotesFn = (updatedNotes, oldNotesId, token, msg) => {
+        updateNotesInDB(updatedNotes, oldNotesId, token, userDataDispatch, msg)
     };
 
     return (
@@ -34,7 +34,13 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                             <h2 className="word-break-all">
                                 {userCreatedNotes.heading}
                             </h2>
-                            <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-squre align_self-flex-start"></button>
+                            {location.pathname === "/"  && (userCreatedNotes.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
+                                updateNotesFn({...userCreatedNotes, pin: false}, userCreatedNotes._id, token, "Notes Unpin")
+                            }} ></button> :
+                                <button className="far fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
+                                    updateNotesFn({...userCreatedNotes, pin: true}, userCreatedNotes._id, token, "Notes Pin")
+                                }}></button>
+                            )}
                         </div>
                         <div className="note-card-content mb-1 mt-1">
                             <p className="word-break-all">
@@ -66,7 +72,7 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                         <div className="align-self-start d-flex gap-1">
                             {location.pathname === "/archives" && <button
                                 className="btn-primary btn-sm border-squre"
-                                onClick={() => {postRestoreArchivesItem (userCreatedNotes._id, token, userDataDispatch)}}
+                                onClick={() => { postRestoreArchivesItem(userCreatedNotes._id, token, userDataDispatch) }}
                             >
                                 <i className="material-icons">unarchive</i>
                             </button>}
