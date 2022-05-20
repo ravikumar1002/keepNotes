@@ -19,7 +19,6 @@ export const NoteCard = ({
         label: [],
         color: "",
         pin: false,
-        // createdDate: {date:"", time: "" },
     };
 
     const [notesData, setNotesData] = useState(
@@ -47,7 +46,7 @@ export const NoteCard = ({
                     <button
                         className="btn-sm btn-primary border-squre"
                         onClick={() => {
-                            createNewNotes({...notesData, createdDate:getCurrentDate() }, token);
+                            createNewNotes({...notesData, date:getCurrentDate(), updated: false }, token);
                             setNotesData({ ...defaultValue });
                             setCreateNotes(false)
 
@@ -69,7 +68,7 @@ export const NoteCard = ({
                 )}
                 {updateNotes && (
                     <button className="btn-sm btn-primary border-squre" onClick={() => {
-                        updateNotesFn( {...notesData,  updatedDate: getCurrentDate() },notesValue._id, token,"Note Updated" )
+                        updateNotesFn( {...notesData,  date: getCurrentDate() , updated: true},notesValue._id, token,"Note Updated" )
                         setupdateNotes(false)
                     }}>Update</button>
                 )}

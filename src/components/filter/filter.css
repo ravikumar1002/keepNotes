@@ -1,0 +1,17 @@
+.filter-wrapper {
+  position: absolute;
+  width: 45rem;
+  border: 1px solid var(--light-bg);
+  left: 0;
+  margin: 1rem 0;
+  padding: 1rem;
+  z-index: 3;
+  background-color: var(--secondary-bg);
+}
+
+.filter-ul {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}

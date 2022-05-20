@@ -4,7 +4,7 @@ export const Priority = ({priority}) => {
 
     return (
         <select onClick={(e) => {
-            addInputValueTotheServer("priority", e.target.value);
+            addInputValueTotheServer("priority", e.target.value.toLowerCase());
         }}
         className= "select"
         >
@@ -13,6 +13,7 @@ export const Priority = ({priority}) => {
                 return (
                     <option
                         key={type.id}
+                        value ={type.text.toLowerCase()}
                     >
                         {type.text}
                     </option>

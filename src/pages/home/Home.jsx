@@ -5,6 +5,49 @@ import { createNewNotesInDB } from "../../services"
 import { useEffect, useState } from "react"
 import { useUserData } from "../../context/user-data-context"
 
+
+export const dummyData = [
+    {
+        heading: "111",
+        noteDetail: "",
+        priority: "",
+        label: [],
+        color: "",
+        pin: false,
+    },
+    {
+        heading: "222",
+        noteDetail: "",
+        priority: "",
+        label: [],
+        color: "",
+        pin: false,
+    },
+    {
+        heading: "333",
+        noteDetail: "",
+        priority: "",
+        label: [],
+        color: "",
+        pin: false,
+    },
+    {
+        heading: "mix-1",
+        noteDetail: "",
+        priority: "",
+        label: [],
+        color: "",
+        pin: false,
+    }, {
+        heading: "mix-2",
+        noteDetail: "",
+        priority: "",
+        label: [],
+        color: "",
+        pin: false,
+    }
+]
+
 export const Home = () => {
     const { token } = useAuth()
     const [createNotes, setCreateNotes] = useState(false)
@@ -15,6 +58,10 @@ export const Home = () => {
     })
     const createNewNotes = (note) => {
         createNewNotesInDB(note, token, userDataDispatch)
+    }
+
+    for (let i = 0; i < dummyData.length; i++) {
+        // createNewNotes(dummyData[i], token , userDataDispatch)
     }
 
     const intialValue = {

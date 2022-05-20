@@ -66,8 +66,8 @@ export const SaveNotes = ({ userCreatedNotes }) => {
 
                     <div className="flex-space-between p-1 d-flex gap-1">
                         <div className="flex-col" style={{ marginRight: "5px" }}>
-                            <small>{userCreatedNotes?.updatedDate ? "Updates On" : "Created On"}</small>
-                            <small>{userCreatedNotes?.updatedDate ? userCreatedNotes?.updatedDate : userCreatedNotes?.createdDate}</small>
+                            <small>{userCreatedNotes?.updated ? "Updates On" : "Created On"}</small>
+                            <small>{userCreatedNotes?.date}</small>
                         </div>
                         <div className="align-self-start d-flex gap-1">
                             {location.pathname === "/archives" && <button

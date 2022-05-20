@@ -5,3 +5,10 @@
   padding: 2rem 1rem;
   gap: 2rem;
 }
+
+.page-content > div:first-child {
+  display: flex;
+  margin: auto;
+  gap: 1rem;
+  position: relative;
+}

@@ -8,7 +8,7 @@ const UserDataProvider = ({ children }) => {
         allNotes: [],
         archiveNotes: [],
         trashNotes: [],
-        pinNotes: [],
+        filteredNotes: [],
     }
     const [userDataState, userDataDispatch] = useReducer(userData, userIntialData)
 
