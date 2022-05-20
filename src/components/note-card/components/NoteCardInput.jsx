@@ -117,7 +117,7 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                 />
             </div>
             <div className="p-1">
-                <Priority priority={{ addInputValueTotheServer, priorityType }} />
+                <Priority priority={{ addInputValueTotheServer, priorityType,notesData  }} />
             </div>
             <div className="flex-col">
                 <ShowSelectedLabel selectedLabel={{ notesData, removeSelectedLabel }} />

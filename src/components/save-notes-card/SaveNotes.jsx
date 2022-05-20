@@ -5,7 +5,7 @@ import { updateNotesInDB, postTrashItem, postArchivesItem, deleteNoteArchivesIte
 import { useUserData } from "../../context/user-data-context";
 import { useLocation } from "react-router-dom";
 
-export const SaveNotes = ({ userCreatedNotes }) => {
+export const SaveNotes = ({ userCreatedNotes , path}) => {
     const location = useLocation()
     const [updateNotes, setupdateNotes] = useState(false);
     const { userDataDispatch } = useUserData()
@@ -34,11 +34,11 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                             <h2 className="word-break-all">
                                 {userCreatedNotes.heading}
                             </h2>
-                            {location.pathname === "/"  && (userCreatedNotes.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
-                                updateNotesFn({...userCreatedNotes, pin: false}, userCreatedNotes._id, token, "Notes Unpin")
+                            {(location.pathname === "/") && (userCreatedNotes.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
+                                updateNotesFn({ ...userCreatedNotes, pin: false }, userCreatedNotes._id, token, "Notes Unpin")
                             }} ></button> :
                                 <button className="far fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
-                                    updateNotesFn({...userCreatedNotes, pin: true}, userCreatedNotes._id, token, "Notes Pin")
+                                    updateNotesFn({ ...userCreatedNotes, pin: true }, userCreatedNotes._id, token, "Notes Pin")
                                 }}></button>
                             )}
                         </div>
@@ -82,7 +82,7 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                                 <i className="fa-solid fa-box-archive"></i>
                             </button>}
 
-                            {location.pathname === "/" && <button
+                            {(location.pathname === "/" ||  location.pathname === path) && <button
                                 className="btn-primary btn-sm border-squre"
                                 onClick={() => { setupdateNotes(true) }}
                             >

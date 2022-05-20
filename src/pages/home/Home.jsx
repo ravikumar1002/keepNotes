@@ -4,7 +4,7 @@ import { SaveNotes, NoteCard } from "../../components"
 import { createNewNotesInDB } from "../../services"
 import { useEffect, useState } from "react"
 import { useUserData } from "../../context/user-data-context"
-
+import { pinFn } from "../../utility"
 
 export const dummyData = [
     {
@@ -59,34 +59,13 @@ export const Home = () => {
     const createNewNotes = (note) => {
         createNewNotesInDB(note, token, userDataDispatch)
     }
-
-    for (let i = 0; i < dummyData.length; i++) {
-        // createNewNotes(dummyData[i], token , userDataDispatch)
-    }
-
     const intialValue = {
         allNotes: [],
         pinNotes: [],
-    }
-
-    const reducerFn = (acc, curr) => {
-
-        if (curr?.pin === true) {
-            return acc = {
-                ...acc,
-                pinNotes: [...acc.pinNotes, curr]
-            }
-        } else if (curr?.pin === false) {
-            return acc = {
-                ...acc,
-                allNotes: [...acc.allNotes, curr]
-            }
-        }
-    }
+    };
 
     useEffect(() => {
-        console.log(userDataState)
-        const notesData = userDataState.allNotes.reduce(reducerFn, intialValue)
+        const notesData = pinFn(userDataState.allNotes, intialValue)
         setNotes({ ...notesData })
     }, [userDataState])
 
