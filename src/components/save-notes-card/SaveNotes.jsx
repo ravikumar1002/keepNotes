@@ -34,10 +34,10 @@ export const SaveNotes = ({ userCreatedNotes , path}) => {
                             <h2 className="word-break-all">
                                 {userCreatedNotes.heading}
                             </h2>
-                            {(location.pathname === "/") && (userCreatedNotes.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
+                            {(location.pathname === "/") && (userCreatedNotes.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" style={{color: "#6610f2"}} onClick={() => {
                                 updateNotesFn({ ...userCreatedNotes, pin: false }, userCreatedNotes._id, token, "Notes Unpin")
                             }} ></button> :
-                                <button className="far fa-thumbtack btn-sm border-squre align_self-flex-start" onClick={() => {
+                                <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" style={{color: "black"}} onClick={() => {
                                     updateNotesFn({ ...userCreatedNotes, pin: true }, userCreatedNotes._id, token, "Notes Pin")
                                 }}></button>
                             )}
