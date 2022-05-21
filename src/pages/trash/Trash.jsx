@@ -21,7 +21,7 @@ export const Trash = () => {
                 {userDataState?.trashNotes.length > 0 &&
                     userDataState?.trashNotes.map((trashNote) => {
                         return (
-                            <TrashCard trashNote = {trashNote}/>
+                            <TrashCard trashNote = {trashNote} key = {trashNote._id}/>
                         )
                     })
                 }

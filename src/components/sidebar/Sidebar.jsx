@@ -36,12 +36,6 @@ export const Sidebar = () => {
                 </span>
                 <span> Home </span>
             </NavLink>
-            <NavLink style={getActiveStyle} to="/">
-                <span>
-                    <i className="fa-solid fa-tag"></i>
-                </span>
-                <span> Labels </span>
-            </NavLink>
             {
                 userSaveLabel.length > 0 && userSaveLabel.map((label) => {
 
@@ -64,12 +58,7 @@ export const Sidebar = () => {
                 </span>
                 <span> Trash </span>
             </NavLink>
-            <NavLink style={getActiveStyle} to="/">
-                <span>
-                    <i className="fa-solid fa-user"></i>
-                </span>
-                <span> Profile </span>
-            </NavLink>
+            
         </div>
     )
 }

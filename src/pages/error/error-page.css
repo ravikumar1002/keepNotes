@@ -1,0 +1,29 @@
+.error-img{
+    height: 15rem;
+    max-width: 35rem;
+    object-fit: contain;
+}
+
+.error-heading{
+    color: var(--light-dark);
+    margin: 0.5rem;
+    padding: 0.5rem;
+    font-size: 2rem;
+}
+
+.error-content{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.error-page-btn{
+    display: inline-block;
+    text-decoration: none;
+}
+
+.error-content > p {
+    max-width: 30rem;
+} 

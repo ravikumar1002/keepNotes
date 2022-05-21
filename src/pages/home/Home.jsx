@@ -23,7 +23,7 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        const notesData = pinFn(userDataState.filteredNotes, intialValue)
+        const notesData = pinFn(userDataState?.filteredNotes, intialValue)
         setNotes({ ...notesData })
         console.log(userDataState.filteredNotes, "filteredNotes")
     }, [userDataState])
@@ -37,8 +37,8 @@ export const Home = () => {
                 }
                 {createNotes && <NoteCard createNotes={createNotes} setCreateNotes={setCreateNotes} token={token} createNewNotes={createNewNotes} />}
             </div>
-            <p>Pin notes</p>
-            <div className="d-flex gap-2 flex-wrap">
+            { notes?.pinNotes.length > 0 && <p className="fs-md fw-700 p-1">Pin notes</p> }
+            <div className="d-flex gap-2 flex-wrap p-1">
                 {notes?.pinNotes.length > 0 && notes?.pinNotes.map((note) => {
                     return (
                         <SaveNotes userCreatedNotes={note} key={note._id} />
@@ -46,8 +46,8 @@ export const Home = () => {
                 })
                 }
             </div>
-            <p>All notes</p>
-            <div className="d-flex gap-2 flex-wrap">
+            <p className="fs-md fw-700 p-1">All notes</p>
+            <div className="d-flex gap-2 flex-wrap p-1">
                 {notes?.allNotes.length > 0 && notes?.allNotes.map((note) => {
                     return (
                         <SaveNotes userCreatedNotes={note} key={note._id} />
