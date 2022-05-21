@@ -5,8 +5,8 @@
 }
 
 .input-search {
-  background: #ffffff;
-  border: 1px solid #d0d0d0;
+  background: var(--light);
+  border: 1px solid var(--light-bg);
   border-radius: 5px;
   width: 40rem;
 }

@@ -1,7 +1,13 @@
 import "./sidebar.css"
 import { Link, NavLink } from "react-router-dom";
+import { findAllLabel } from "../../utility"
+import { useEffect, useState } from "react";
+import { useUserData } from "../../context/user-data-context";
 
 export const Sidebar = () => {
+    const { userDataState, userDataDispatch } = useUserData();
+    const [userSaveLabel, setUserSaveLabel] = useState([])
+
     const activeStyle = {
         color: "#1C1C1E",
         fontWeight: "700",
@@ -14,6 +20,12 @@ export const Sidebar = () => {
         textDecoration: "none",
     }
     const getActiveStyle = ({ isActive }) => isActive ? activeStyle : deactiveStyle
+
+    useEffect(() => {
+        const getLabel = findAllLabel(userDataState.allNotes);
+        setUserSaveLabel(getLabel);
+    }, [userDataState]);
+
 
 
     return (
@@ -30,6 +42,16 @@ export const Sidebar = () => {
                 </span>
                 <span> Labels </span>
             </NavLink>
+            {
+                userSaveLabel.length > 0 && userSaveLabel.map((label) => {
+
+                    return (
+                        <NavLink style={getActiveStyle} to={`/label/${label.label}`} key={label._id}>
+                            <span>{label.label}</span>
+                        </NavLink>
+                    )
+                })
+            }
             <NavLink style={getActiveStyle} to="/archives">
                 <span>
                     <i className="fa-solid fa-box-archive"></i>

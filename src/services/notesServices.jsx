@@ -12,8 +12,8 @@ export const createNewNotesInDB = async(note, token, userDataDispatch) => {
  }
   
 
- export const updateNotesInDB = async( note ,noteId, token, userDataDispatch) => {
-    const updatedNote =  await updateNotes(note , noteId, token)
+ export const updateNotesInDB = async( note ,noteId, token, userDataDispatch, msg) => {
+    const updatedNote =  await updateNotes(note , noteId, token, msg)
     userDataDispatch({
         type: "ALL_NOTES",
         payload: {

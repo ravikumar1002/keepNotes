@@ -97,7 +97,13 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                         objctKey: "heading",
                     }}
                 />
-                <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-round align_self-flex-start"></button>
+                {notesData.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" style={{color: "#6610f2"}}  onClick={() => {
+                    addInputValueTotheServer("pin", false)
+                }} ></button> :
+                    <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" style={{color: "black"}} onClick={() => {
+                        addInputValueTotheServer("pin", true)
+                    }}></button>
+                }
             </div>
             <div className="note-card-content">
                 <TextArea
@@ -111,7 +117,7 @@ export const NotesCardInput = ({ setNotesData, notesData }) => {
                 />
             </div>
             <div className="p-1">
-                <Priority priority={{ addInputValueTotheServer, priorityType }} />
+                <Priority priority={{ addInputValueTotheServer, priorityType,notesData  }} />
             </div>
             <div className="flex-col">
                 <ShowSelectedLabel selectedLabel={{ notesData, removeSelectedLabel }} />

@@ -5,13 +5,13 @@ import { updateNotesInDB, postTrashItem, postArchivesItem, deleteNoteArchivesIte
 import { useUserData } from "../../context/user-data-context";
 import { useLocation } from "react-router-dom";
 
-export const SaveNotes = ({ userCreatedNotes }) => {
+export const SaveNotes = ({ userCreatedNotes , path}) => {
     const location = useLocation()
     const [updateNotes, setupdateNotes] = useState(false);
     const { userDataDispatch } = useUserData()
     const { token } = useAuth()
-    const updateNotesFn = (updatedNotes, oldNotesId, token) => {
-        updateNotesInDB(updatedNotes, oldNotesId, token, userDataDispatch)
+    const updateNotesFn = (updatedNotes, oldNotesId, token, msg) => {
+        updateNotesInDB(updatedNotes, oldNotesId, token, userDataDispatch, msg)
     };
 
     return (
@@ -34,7 +34,13 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                             <h2 className="word-break-all">
                                 {userCreatedNotes.heading}
                             </h2>
-                            <button className="fa-solid fa-thumbtack  pin-btn btn-primary btn-sm border-squre align_self-flex-start"></button>
+                            {(location.pathname === "/") && (userCreatedNotes.pin === true ? <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" style={{color: "#6610f2"}} onClick={() => {
+                                updateNotesFn({ ...userCreatedNotes, pin: false }, userCreatedNotes._id, token, "Notes Unpin")
+                            }} ></button> :
+                                <button className="fas fa-thumbtack btn-sm border-squre align_self-flex-start" style={{color: "black"}} onClick={() => {
+                                    updateNotesFn({ ...userCreatedNotes, pin: true }, userCreatedNotes._id, token, "Notes Pin")
+                                }}></button>
+                            )}
                         </div>
                         <div className="note-card-content mb-1 mt-1">
                             <p className="word-break-all">
@@ -60,13 +66,13 @@ export const SaveNotes = ({ userCreatedNotes }) => {
 
                     <div className="flex-space-between p-1 d-flex gap-1">
                         <div className="flex-col" style={{ marginRight: "5px" }}>
-                            <small>{userCreatedNotes?.updatedDate ? "Updates On" : "Created On"}</small>
-                            <small>{userCreatedNotes?.updatedDate ? userCreatedNotes?.updatedDate : userCreatedNotes?.createdDate}</small>
+                            <small>{userCreatedNotes?.updated ? "Updates On" : "Created On"}</small>
+                            <small>{userCreatedNotes?.date}</small>
                         </div>
                         <div className="align-self-start d-flex gap-1">
                             {location.pathname === "/archives" && <button
                                 className="btn-primary btn-sm border-squre"
-                                onClick={() => {postRestoreArchivesItem (userCreatedNotes._id, token, userDataDispatch)}}
+                                onClick={() => { postRestoreArchivesItem(userCreatedNotes._id, token, userDataDispatch) }}
                             >
                                 <i className="material-icons">unarchive</i>
                             </button>}
@@ -76,7 +82,7 @@ export const SaveNotes = ({ userCreatedNotes }) => {
                                 <i className="fa-solid fa-box-archive"></i>
                             </button>}
 
-                            {location.pathname === "/" && <button
+                            {(location.pathname === "/" ||  location.pathname === path) && <button
                                 className="btn-primary btn-sm border-squre"
                                 onClick={() => { setupdateNotes(true) }}
                             >

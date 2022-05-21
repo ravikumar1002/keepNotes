@@ -20,7 +20,6 @@ export const getArchives = async (token) => {
 
 
 export const postArchives = async (noteId, note, authToken) => {
-    console.log(noteId, note, authToken)
     try {
         const response = await axios.post(`api/notes/archives/${noteId}`,
             {
@@ -30,7 +29,6 @@ export const postArchives = async (noteId, note, authToken) => {
                 headers: { authorization: authToken },
             }
         );
-        console.log(response)
 
         if (response.status === 200 || response.status === 201) {
             toast.success(`Note moved in Archives`);
