@@ -13,7 +13,7 @@ export const Archives = () => {
 
     return (
         <div>
-            Archives
+            <p className="fs-lg fw-700 text-center">Archives</p>
             <div>
                 {userDataState.archiveNotes.length> 0 && userDataState.archiveNotes.map((archives) => {
                        return (
@@ -21,6 +21,8 @@ export const Archives = () => {
                        )
                 })}
             </div>
+            {userDataState?.archiveNotes.length === 0 && <div className="flex-center fs-md" style={{height: "10rem"}}> <p> Archives Is Empty</p></div>} 
+
         </div>
     )
 }

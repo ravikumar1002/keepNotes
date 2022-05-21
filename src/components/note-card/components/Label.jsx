@@ -84,6 +84,7 @@ export const Label = ({ labelValue }) => {
                                     createLable(e, label, notesData.label);
                                 }
                             }}
+                            placeholder= "Press Enter to add"
                             onChange={(e) => {
                                 setNewlabel(e.target.value);
                                 setTempLabel(e)

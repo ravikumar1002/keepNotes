@@ -9,9 +9,10 @@ export const Sidebar = () => {
     const [userSaveLabel, setUserSaveLabel] = useState([])
 
     const activeStyle = {
-        color: "#1C1C1E",
+        color: "rgb(13 13 206)",
         fontWeight: "700",
         textDecoration: "none",
+        backgroundColor: "aliceblue",
     }
 
     const deactiveStyle = {
@@ -19,7 +20,7 @@ export const Sidebar = () => {
         fontWeight: "600",
         textDecoration: "none",
     }
-    const getActiveStyle = ({ isActive }) => isActive ? activeStyle : deactiveStyle
+    const getActiveStyle = ({ isActive }) => isActive ? activeStyle : deactiveStyle ;
 
     useEffect(() => {
         const getLabel = findAllLabel(userDataState.allNotes);
