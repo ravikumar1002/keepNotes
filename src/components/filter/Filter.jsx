@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect,useRef } from "react"
 import { useUserData } from "../../context/user-data-context";
 import { findAllLabel, filteredDateFn, sortByPriorityFn, sortByLabelFn } from "../../utility";
 import "./filter.css"
@@ -12,7 +12,9 @@ export const Filter = () => {
         priority: "",
         label: {},
     })
+    const container = useRef();
     useEffect(() => {
+        console.log(userDataState.filteredNotes)
         const getLabel = findAllLabel(userDataState.allNotes);
         setUserSaveLabel(getLabel);
     }, [userDataState]);
@@ -23,7 +25,7 @@ export const Filter = () => {
         label: {},
     }
 
-    const filterFunction =  (allnotes, filteredInput) => {
+    const filterFunction = (allnotes, filteredInput) => {
         let sortByDate = filteredDateFn(allnotes, filteredInput)
         let sortByPriority = sortByPriorityFn(sortByDate, filteredInput)
         let sortByLabel = sortByLabelFn(sortByPriority, filteredInput)
@@ -38,8 +40,24 @@ export const Filter = () => {
     }
 
     useEffect(() => {
-        filterFunction(userDataState.allNotes, saveInput)
-    }, [saveInput])
+        const filteredNotesData = filterFunction(userDataState.allNotes, saveInput)
+        userDataDispatch({
+            type: "FILTER",
+            payload: {
+                filterData: filteredNotesData
+            }
+        })
+    }, [saveInput, userDataState.allNotes])
+
+    const handleClickOutside = (e) => {
+        if (container?.current && !container?.current?.contains(e.target)) {
+            setShowFilter(false)
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+    }, []);
 
     return (
         <div >
@@ -48,9 +66,9 @@ export const Filter = () => {
                     setShowFilter(!showFilter)
                 }} className="btn btn-sm btn-primary border-squre">filter</button>
             </div>
-            {showFilter && <div className="filter-wrapper" >
-                <div className=" flex-space-between p-1">
-                    <div>
+            {showFilter && <div className="filter-wrapper container" ref={container} >
+                <div className=" flex-space-between">
+                    <div  className="select-wrapper">
                         <label htmlFor="date">Sort By Date:</label>
                         <select name="date" id="date" onChange={(e) => {
                             setSaveInput((prev) => {
@@ -59,13 +77,16 @@ export const Filter = () => {
                                     date: e.target.value
                                 }
                             })
-                        }}>
+                        }}
+                        className = "select"
+                        value = {saveInput.date}
+                        >
                             <option value="">--Please choose an option--</option>
                             <option value="newest">Newest</option>
                             <option value="oldest">oldest</option>
                         </select>
                     </div>
-                    <div>
+                    <div className="select-wrapper">
                         <label htmlFor="priority">Sort By priority:</label>
                         <select name="priority" id="priority" onChange={(e) => {
                             setSaveInput((prev) => {
@@ -74,7 +95,10 @@ export const Filter = () => {
                                     priority: e.target.value.toLowerCase()
                                 }
                             })
-                        }}>
+                        }}
+                        className = "select"
+                        value = {saveInput.priority}
+                        >
                             <option value="">--Please choose an option--</option>
                             <option value="high">High</option>
                             <option value="medium">Medium</option>
@@ -85,12 +109,12 @@ export const Filter = () => {
                 <div>
                     <div>
                         {userSaveLabel.length > 0 &&
-                            <ul className="filter-ul list-style-none">
+                            <ul className="d-flex gap-2 flex-wrap p-2 list-style-none">
                                 {
                                     userSaveLabel.map((saveLabel) => {
                                         return (
                                             <li className="" key={saveLabel._id}>
-                                                <button className="btn btn-sm btn-primary" style={{ backgroundColor: `${checkedClickedORNote(saveLabel, saveInput) ? "red" : "green"}` }} onClick={(e) => {
+                                                <button className={`btn btn-sm  border-squre ${checkedClickedORNote(saveLabel, saveInput) ? "activeFilterLabel" : "filterLabel"}`}  onClick={(e) => {
                                                     if (saveLabel._id === saveInput.label._id) {
                                                         setSaveInput((prev) => {
                                                             return {
@@ -113,6 +137,11 @@ export const Filter = () => {
                                     })}
                             </ul>}
                     </div>
+                </div>
+                <div className="d-flex mt-1" style={{justifyContent: "end"}} >
+                    <button className="btn btn-sm btn-danger border-squre" onClick={() => {
+                       setSaveInput({...clearfilter}) 
+                    }}>Clear Filter</button>
                 </div>
             </div>}
         </div>

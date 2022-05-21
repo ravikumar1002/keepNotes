@@ -6,7 +6,18 @@
   margin: 1rem 0;
   padding: 1rem;
   z-index: 3;
-  background-color: var(--secondary-bg);
+  background-color: var(--light-bg);
+  border-radius: 5px;
+}
+
+.filterLabel{
+  color: var(--primary);
+  background-color: var(--light);
+}
+
+.activeFilterLabel{
+  background-color: var(--primary-bg);
+  color: var(--light);
 }
 
 .filter-ul {
@@ -14,4 +25,13 @@
   gap: 2rem;
   flex-wrap: wrap;
   padding: 1rem;
+}
+.select-wrapper{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.select-wrapper > select {
+  background-color: var(--light);
 }

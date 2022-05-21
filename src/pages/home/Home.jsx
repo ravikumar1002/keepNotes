@@ -1,52 +1,10 @@
 import "./home.css"
 import { useAuth } from "../../context/auth-context"
-import { SaveNotes, NoteCard } from "../../components"
+import { SaveNotes, NoteCard, Filter } from "../../components"
 import { createNewNotesInDB } from "../../services"
 import { useEffect, useState } from "react"
 import { useUserData } from "../../context/user-data-context"
 import { pinFn } from "../../utility"
-
-export const dummyData = [
-    {
-        heading: "111",
-        noteDetail: "",
-        priority: "",
-        label: [],
-        color: "",
-        pin: false,
-    },
-    {
-        heading: "222",
-        noteDetail: "",
-        priority: "",
-        label: [],
-        color: "",
-        pin: false,
-    },
-    {
-        heading: "333",
-        noteDetail: "",
-        priority: "",
-        label: [],
-        color: "",
-        pin: false,
-    },
-    {
-        heading: "mix-1",
-        noteDetail: "",
-        priority: "",
-        label: [],
-        color: "",
-        pin: false,
-    }, {
-        heading: "mix-2",
-        noteDetail: "",
-        priority: "",
-        label: [],
-        color: "",
-        pin: false,
-    }
-]
 
 export const Home = () => {
     const { token } = useAuth()
@@ -65,14 +23,18 @@ export const Home = () => {
     };
 
     useEffect(() => {
-        const notesData = pinFn(userDataState.allNotes, intialValue)
+        const notesData = pinFn(userDataState.filteredNotes, intialValue)
         setNotes({ ...notesData })
+        console.log(userDataState.filteredNotes, "filteredNotes")
     }, [userDataState])
 
     return (
         <div>
             <div>
-                {!createNotes && <button onClick={() => setCreateNotes(!createNotes)} className="btn-sm btn-primary border-squre m-2"> + CreateNotes</button>}
+                {!createNotes && <div>
+                    <button onClick={() => setCreateNotes(!createNotes)} className="btn-sm btn-primary border-squre m-2"> + CreateNotes</button>
+                </div>
+                }
                 {createNotes && <NoteCard createNotes={createNotes} setCreateNotes={setCreateNotes} token={token} createNewNotes={createNewNotes} />}
             </div>
             <p>Pin notes</p>

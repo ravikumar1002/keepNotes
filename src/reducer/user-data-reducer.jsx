@@ -30,6 +30,12 @@ export const userData = (state, action) => {
             archiveNotes: action.payload.archives,
             allNotes: action.payload.notes
         }
+
+        case "FILTER" : 
+        return {
+            ...state, 
+            filteredNotes: action.payload.filterData
+        }
         
         
         default:
