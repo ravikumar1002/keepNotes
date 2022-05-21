@@ -15,17 +15,18 @@ export const Trash = () => {
     return (
         <div>
             <div>
-                <p>Trash</p>
+                <p className="fs-lg fw-700 text-center">Trash</p>
             </div>
             <div>
                 {userDataState?.trashNotes.length > 0 &&
                     userDataState?.trashNotes.map((trashNote) => {
                         return (
-                            <TrashCard trashNote = {trashNote}/>
+                            <TrashCard trashNote = {trashNote} key = {trashNote._id}/>
                         )
                     })
                 }
             </div>
+            {userDataState?.trashNotes.length === 0 && <div className="flex-center fs-md" style={{height: "10rem"}}> <p> Trash Is Empty</p></div>} 
         </div>
     )
 }

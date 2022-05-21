@@ -38,8 +38,6 @@ export const Label = () => {
                     <SaveNotes userCreatedNotes={labelNotes} key={labelNotes._id} path = {`/label/${label}`} />
                 )
             })}
-
-            {/* {userDataState.allNotes.length === 0 && <Navigate to="/" replace />} */}
         </div>
     )
 }

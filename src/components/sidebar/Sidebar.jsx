@@ -9,9 +9,10 @@ export const Sidebar = () => {
     const [userSaveLabel, setUserSaveLabel] = useState([])
 
     const activeStyle = {
-        color: "#1C1C1E",
+        color: "rgb(13 13 206)",
         fontWeight: "700",
         textDecoration: "none",
+        backgroundColor: "aliceblue",
     }
 
     const deactiveStyle = {
@@ -19,7 +20,7 @@ export const Sidebar = () => {
         fontWeight: "600",
         textDecoration: "none",
     }
-    const getActiveStyle = ({ isActive }) => isActive ? activeStyle : deactiveStyle
+    const getActiveStyle = ({ isActive }) => isActive ? activeStyle : deactiveStyle ;
 
     useEffect(() => {
         const getLabel = findAllLabel(userDataState.allNotes);
@@ -35,12 +36,6 @@ export const Sidebar = () => {
                     <i className="fa-solid fa-house"></i>
                 </span>
                 <span> Home </span>
-            </NavLink>
-            <NavLink style={getActiveStyle} to="/">
-                <span>
-                    <i className="fa-solid fa-tag"></i>
-                </span>
-                <span> Labels </span>
             </NavLink>
             {
                 userSaveLabel.length > 0 && userSaveLabel.map((label) => {
@@ -64,12 +59,7 @@ export const Sidebar = () => {
                 </span>
                 <span> Trash </span>
             </NavLink>
-            <NavLink style={getActiveStyle} to="/">
-                <span>
-                    <i className="fa-solid fa-user"></i>
-                </span>
-                <span> Profile </span>
-            </NavLink>
+            
         </div>
     )
 }

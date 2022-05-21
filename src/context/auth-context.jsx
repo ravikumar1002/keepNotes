@@ -27,30 +27,20 @@ const AuthProvider = ({ children }) => {
         })
     }
 
-    const setPath = (path) => {
-        if (!path?.state?.from) {
-            if (path.state) {
-                navigate(path?.state)
-            } else {
-                navigate(path?.pathname)
-            }
-        } else {
-            navigate(path?.state?.from?.pathname)
-        }
-    }
 
-    const userSignUp = async ({ email, password, name}, path) => {
+    const userSignUp = async ({ email, password, name }, path) => {
         const data = await signupHandler(email, password, name)
-        setLocalStroge(data.encodedToken,data?.createdUser )
-        setData(data.encodedToken,data?.createdUser )
-        setPath(path)
+        setLocalStroge(data.encodedToken, data?.createdUser)
+        setData(data.encodedToken, data?.createdUser)
+        navigate("/")
     }
 
-    const userlogin = async ({ email, password }, path) => {
+    const userlogin = async ({ email, password }) => {
         const data = await loginHandler(email, password)
-        setLocalStroge(data.encodedToken,data?.foundUser )
-        setData(data.encodedToken,data?.foundUser )
-        setPath(path)
+        setLocalStroge(data.encodedToken, data?.foundUser)
+        setData(data.encodedToken, data?.foundUser)
+        navigate("/")
+        return data
     }
 
     const logout = () => {
@@ -60,6 +50,7 @@ const AuthProvider = ({ children }) => {
         })
         localStorage.clear()
     }
+
 
     const getLocalData = async (path) => {
         const localStrogeItem = await { ...JSON.parse(localStorage.getItem("userHasLogged")).user }
@@ -77,7 +68,7 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-    return <authContext.Provider value={{ userSignUp,logout, userlogin, user, token: user?.encodedToken }}>
+    return <authContext.Provider value={{ userSignUp, logout, userlogin, user, token: user?.encodedToken }}>
         {children}
     </authContext.Provider>
 }

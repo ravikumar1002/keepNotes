@@ -27,6 +27,7 @@ export const loginHandler = async (email, password) => {
     });
     if (response.status === 200 || response.status === 201) {
       toast.success(`Log In successful`);
+      console.log(response)
       return response.data
     }
   } catch (error) {
