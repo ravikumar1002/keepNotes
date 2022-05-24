@@ -5,7 +5,6 @@ export const arrangeDateFormat = (date) => {
 };
 
 export const filteredDateFn = (allnotes, filteredInput) => {
-  console.log(allnotes)
   let filteredbyDate;
   if (filteredInput.date === "newest") {
     return (filteredbyDate = [...allnotes].sort(
@@ -20,7 +19,6 @@ export const filteredDateFn = (allnotes, filteredInput) => {
 };
 
 export const sortByPriorityFn = (allNotes, filteredInput) => {
-  console.log(allNotes)
   const sortedPriority = allNotes.filter(
     (note) => note.priority === filteredInput.priority
   );
@@ -31,7 +29,6 @@ export const sortByPriorityFn = (allNotes, filteredInput) => {
 };
 
 export const sortByLabelFn = (allNotes, filteredInput) => {
-  console.log(allNotes)
   const filteredNotes = allNotes.filter((note) => {
     let match = false;
     const id = note.label.map((label) => label._id);

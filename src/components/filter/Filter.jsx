@@ -14,7 +14,6 @@ export const Filter = () => {
     })
     const container = useRef();
     useEffect(() => {
-        console.log(userDataState.filteredNotes)
         const getLabel = findAllLabel(userDataState.allNotes);
         setUserSaveLabel(getLabel);
     }, [userDataState]);

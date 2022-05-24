@@ -25,6 +25,13 @@ export const NoteCard = ({
         updateNotes ? { ...notesValue } : { ...defaultValue }
     );
 
+    const openSubmitButton = (data) => {
+        if(data.heading.trim().trim().length > 0 || data.noteDetail.trim().length > 0) {
+            return true
+        }
+        return false
+    }
+
     return (
         <div
             className="note-card"
@@ -44,13 +51,15 @@ export const NoteCard = ({
                 )}
                 {createNotes && (
                     <button
-                        className="btn-sm btn-primary border-squre"
+                        className={ `btn-sm btn-primary border-squre ${openSubmitButton(notesData) ?"" :  "cursor-disabled"}`}
                         onClick={() => {
                             createNewNotes({...notesData, date:getCurrentDate(), updated: false }, token);
                             setNotesData({ ...defaultValue });
                             setCreateNotes(false)
 
                         }}
+
+                        
                     >
                         create
                     </button>

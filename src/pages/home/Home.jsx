@@ -25,7 +25,6 @@ export const Home = () => {
     useEffect(() => {
         const notesData = pinFn(userDataState?.filteredNotes, intialValue)
         setNotes({ ...notesData })
-        console.log(userDataState.filteredNotes, "filteredNotes")
     }, [userDataState])
 
     return (

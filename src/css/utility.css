@@ -136,3 +136,7 @@
 .align_self-flex-start{
   align-self: flex-start;
 }
+
+.cursor-disabled{
+  cursor: not-allowed;
+}
