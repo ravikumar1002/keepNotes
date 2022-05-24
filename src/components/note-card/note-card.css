@@ -1,5 +1,4 @@
 .note-card {
-  width: 25rem;
   padding: 1rem;
   border: 1px solid rgb(205, 205, 205);
   border-radius: 5px;
@@ -23,7 +22,6 @@
 .input-section > div {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
 
 .note-card-footer {
@@ -32,18 +30,28 @@
   align-items: center;
 }
 
+.auto-suggestion {
+  position: relative;
+  display: inline-block;
+}
+
+.input-div > input {
+  border: 1px solid transparent;
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--light-white-bg);
+  width: 100%;
+}
 
 .label-wrapper {
-  position: absolute;
-  padding: 0.1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  background-color: aliceblue;
-  max-height: 17rem;
-  overflow: overlay;
-  top: 0;
-  right: 4.3rem;
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 2;
+    top: 100%;
+    left: 0;
+    right: 0;
 }
 
 .label-li > label > input {
@@ -52,20 +60,22 @@
   margin: 0 0.5rem;
 }
 
-.label-li label,  .label-li:last-child{
+.label-li label {
   display: flex;
   align-items: center;
   width: 100%;
   cursor: pointer;
-  padding: 0.5rem;
-
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff; 
+  border-bottom: 1px solid #d4d4d4; 
 }
 
 .label-li:hover {
   background-color: antiquewhite;
 }
 
-.added-label{
+.added-label {
   border-radius: 5px;
   padding: 0.3rem;
   background: antiquewhite;
@@ -73,11 +83,10 @@
   font-size: 0.8rem;
 }
 
-
 .select {
   display: flex;
   width: 10rem;
-  height: 1.5rem;
+  padding: 0.5rem;
   background: #d2d2d2;
   overflow: hidden;
   border-radius: 5px;
@@ -87,4 +96,3 @@
 .select:hover::after {
   color: #212222;
 }
-

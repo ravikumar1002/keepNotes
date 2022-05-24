@@ -26,18 +26,32 @@ export const Label = ({ labelValue }) => {
     }, []);
 
     return (
-        <div 
-        className="container"
-        ref={container}
+        <div
+            className="container auto-suggestion"
+            ref={container}
         >
-            <button
-                className="btn-sm btn-primary border-squre"
-                onClick={() => {
-                    setShowLabel(!showLabel);
-                }}
-            >
-                {showLabel ? "close" : "Add Label"}
-            </button>
+
+            <div className="input-div">
+                <input
+                    type="text"
+                    name="createLabel "
+                    value={newLabel}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            createLable(e, label, notesData.label);
+                        }
+                    }}
+                    placeholder="Press Enter to add"
+                    onChange={(e) => {
+                        setNewlabel(e.target.value);
+                        setTempLabel(e)
+                    }}
+                    onFocus={() => {
+                        setShowLabel(!showLabel)
+                    }}
+                />
+            </div>
+
             {showLabel &&
                 <ul className="list-style-none label-wrapper "
                 >
@@ -72,33 +86,10 @@ export const Label = ({ labelValue }) => {
                                 </li>
                             );
                         })}
-
-                    <li className="label-li"
-                    >
-                        <input
-                            type="text"
-                            name="createLabel "
-                            value={newLabel}
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                    createLable(e, label, notesData.label);
-                                }
-                            }}
-                            placeholder= "Press Enter to add"
-                            onChange={(e) => {
-                                setNewlabel(e.target.value);
-                                setTempLabel(e)
-                            }}
-                        />
-                        <span onClick={() => {
-                            createLable(templabel, label, notesData.label);
-                        }}
-                            className="fa fa-plus fs-sm px-1"
-                        ></span>
-
-                    </li>
                 </ul>
             }
+
+
         </div>
     );
 };

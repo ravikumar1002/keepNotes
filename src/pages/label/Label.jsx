@@ -32,7 +32,7 @@ export const Label = () => {
     }, [label, userDataState.allNotes])
 
     return (
-        <div>
+        <div className="grid-layout">
             {selectesLabel.length > 0 && selectesLabel.map((labelNotes) => {
                 return (
                     <SaveNotes userCreatedNotes={labelNotes} key={labelNotes._id} path = {`/label/${label}`} />

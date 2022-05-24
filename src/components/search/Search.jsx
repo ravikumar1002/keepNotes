@@ -3,7 +3,7 @@ export const Search = () => {
 
     return (
 
-        <div className="search-input-wrapper search-bar">
+        <div className="search-input-wrapper w-100">
             <div className="input-search nav-input-width">
                 <span className="fas fa-search input-search-icon"></span>
                 <input

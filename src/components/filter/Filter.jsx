@@ -60,14 +60,14 @@ export const Filter = () => {
     }, []);
 
     return (
-        <div >
+        <div  className=" container" ref={container}>
             <div>
                 <button onClick={() => {
                     setShowFilter(!showFilter)
                 }} className="btn btn-sm btn-primary border-squre">filter</button>
             </div>
-            {showFilter && <div className="filter-wrapper container" ref={container} >
-                <div className=" flex-space-between">
+            {showFilter && <div className="filter-wrapper" >
+                <div className=" flex-space-between gap-1">
                     <div  className="select-wrapper">
                         <label htmlFor="date">Sort By Date:</label>
                         <select name="date" id="date" onChange={(e) => {

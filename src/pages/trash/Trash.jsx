@@ -17,7 +17,7 @@ export const Trash = () => {
             <div>
                 <p className="fs-lg fw-700 text-center">Trash</p>
             </div>
-            <div>
+            <div className="grid-layout">
                 {userDataState?.trashNotes.length > 0 &&
                     userDataState?.trashNotes.map((trashNote) => {
                         return (

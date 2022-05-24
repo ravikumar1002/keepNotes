@@ -14,7 +14,7 @@ export const Archives = () => {
     return (
         <div>
             <p className="fs-lg fw-700 text-center">Archives</p>
-            <div>
+            <div className="grid-layout">
                 {userDataState.archiveNotes.length> 0 && userDataState.archiveNotes.map((archives) => {
                        return (
                         <SaveNotes userCreatedNotes={archives} key= {archives._id}/>

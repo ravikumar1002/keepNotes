@@ -35,10 +35,12 @@ export const Home = () => {
                     <button onClick={() => setCreateNotes(!createNotes)} className="btn-sm btn-primary border-squre m-2"> + CreateNotes</button>
                 </div>
                 }
-                {createNotes && <NoteCard createNotes={createNotes} setCreateNotes={setCreateNotes} token={token} createNewNotes={createNewNotes} />}
+                <div className= {`${ createNotes  ? "grid-layout" : " "}`}>
+                {createNotes && <NoteCard createNotes={createNotes} setCreateNotes={setCreateNotes} token={token} createNewNotes={createNewNotes}  />}
+                </div>
             </div>
             { notes?.pinNotes.length > 0 && <p className="fs-md fw-700 p-1">Pin notes</p> }
-            <div className="d-flex gap-2 flex-wrap p-1">
+            <div className={`${notes?.pinNotes.length > 0 ?  "grid-layout" : " "}`}>
                 {notes?.pinNotes.length > 0 && notes?.pinNotes.map((note) => {
                     return (
                         <SaveNotes userCreatedNotes={note} key={note._id} />
@@ -47,7 +49,7 @@ export const Home = () => {
                 }
             </div>
             <p className="fs-md fw-700 p-1">All notes</p>
-            <div className="d-flex gap-2 flex-wrap p-1">
+            <div className=" grid-layout">
                 {notes?.allNotes.length > 0 && notes?.allNotes.map((note) => {
                     return (
                         <SaveNotes userCreatedNotes={note} key={note._id} />
