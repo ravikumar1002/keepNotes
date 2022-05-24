@@ -1,3 +1,6 @@
+
+
+
 ## Notes Backend
 
 This folder contains the Mock Backend created for Notes App. It contains different API end-points and database configuration for building Video Library; so that you can focus on building Frontend.
@@ -26,6 +29,9 @@ This folder contains the Mock Backend created for Notes App. It contains differe
 
 ## live Link
 
-     [Keeping notes](https://keepingnotes.netlify.app/signup)
+   [Keeping notes](https://keepingnotes.netlify.app/signup)
 
 ## Live demo
+
+https://user-images.githubusercontent.com/86847625/170035126-7f0f278c-a74c-4382-9be6-7ba0cbea0240.mp4
+
