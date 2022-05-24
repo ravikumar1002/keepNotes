@@ -29,7 +29,7 @@ This folder contains the Mock Backend created for Notes App. It contains differe
 
 ## live Link
 
-   [Keeping notes](https://keepingnotes.netlify.app/signup)
+   [Keeping notes](https://keepingnotes.netlify.app/)
 
 ## Live demo
 
