@@ -12,3 +12,21 @@
   gap: 1rem;
   position: relative;
 }
+
+.sidebar-container {
+  display: block;
+  background: var(--dark-white-bg);
+}
+
+.res-aside {
+  position: fixed;
+  background: var(--dark-white-bg);
+  height: 100%;
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .sidebar-container {
+    display: none;
+  }
+}

@@ -2,7 +2,7 @@
   position: absolute;
   width: 45rem;
   border: 1px solid var(--light-bg);
-  left: 0;
+  right: 0;
   margin: 1rem 0;
   padding: 1rem;
   z-index: 3;
@@ -10,12 +10,12 @@
   border-radius: 5px;
 }
 
-.filterLabel{
+.filterLabel {
   color: var(--primary);
   background-color: var(--light);
 }
 
-.activeFilterLabel{
+.activeFilterLabel {
   background-color: var(--primary-bg);
   color: var(--light);
 }
@@ -26,7 +26,7 @@
   flex-wrap: wrap;
   padding: 1rem;
 }
-.select-wrapper{
+.select-wrapper {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -34,4 +34,20 @@
 
 .select-wrapper > select {
   background-color: var(--light);
+}
+
+@media (max-width: 768px) {
+  .filter-wrapper {
+    width: 25rem;
+  }
+  .select-wrapper {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-wrapper {
+    width: auto;
+  }
 }

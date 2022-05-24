@@ -37,7 +37,6 @@ export const Login = () => {
                         onSubmit={async(e) => {
                             e.preventDefault();
                             const data = await userlogin(loginDetail);
-                            console.log(data)
                             userDataDispatch({
                                 type: "login",
                                 payload: {

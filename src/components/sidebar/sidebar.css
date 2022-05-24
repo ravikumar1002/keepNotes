@@ -5,22 +5,36 @@
   padding: 0.5rem;
   margin: 1rem;
   gap: 0.5rem;
+
 }
 
-.side-bar-wrapper  span:first-child{
-    margin-right: 1rem;
+.side-bar-position{
+  position: sticky;
+  top: 5.7rem;
 }
 
-.side-bar-wrapper  span{
-    font-size: 1rem;
-    line-height: 1.6rem;
+.side-bar-wrapper span:first-child {
+  margin-right: 1rem;
 }
 
-.side-bar-wrapper > *{
-    padding: 0.5rem 0.5rem 0.5rem 1rem;
+.side-bar-wrapper span {
+  font-size: 1rem;
+  line-height: 1.6rem;
 }
 
-.side-bar-wrapper > *:hover{
-    background-color: antiquewhite;
-    color: blue;
+.side-bar-wrapper > * {
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+
+.side-bar-wrapper > *:hover {
+  background-color: antiquewhite;
+  color: blue;
+}
+
+@media (max-width: 1024px) {
+    
+.side-bar-position{
+  position: fixed;
+  height: 100%;
+}
 }

@@ -8,18 +8,20 @@ import { RequiresAuth } from "./pages/auth/components/RequiresAuth";
 import { useAuth } from "./context/auth-context";
 import { ToastContainer } from "react-toastify";
 import { ErrorPage } from "./pages/error/ErrorPage";
+import {useState} from "react"
 
 function App() {
+  const [showAside, setShowAside] = useState(true)
   const { token } = useAuth();
   return (
     <div className="App">
       <ToastContainer position="top-right" autoClose={700} draggable />
-      {token && <Header />}
-      <div className="d-flex">
-        <div>{token && <Sidebar />}</div>
+      {token && <Header setShowAside= {setShowAside}  showAside = {showAside}/>}
+      <div className="d-flex" style={{minHeight: "100vh"}}>
+        <div className= {`${showAside ? "sidebar-container" : "res-aside" }`} >{token && <Sidebar showAside = {showAside}/>}</div>
         <div className="page-content">
           {token && (
-            <div>
+            <div className="w-100">
               <Search />
               <Filter />
             </div>

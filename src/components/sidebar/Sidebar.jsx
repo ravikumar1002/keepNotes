@@ -4,7 +4,7 @@ import { findAllLabel } from "../../utility"
 import { useEffect, useState } from "react";
 import { useUserData } from "../../context/user-data-context";
 
-export const Sidebar = () => {
+export const Sidebar = ({showAside}) => {
     const { userDataState, userDataDispatch } = useUserData();
     const [userSaveLabel, setUserSaveLabel] = useState([])
 
@@ -30,7 +30,7 @@ export const Sidebar = () => {
 
 
     return (
-        <div className="side-bar-wrapper">
+        <div className={`side-bar-wrapper ${showAside? "side-bar-position" : " "}`}>
             <NavLink style={getActiveStyle} to="/">
                 <span>
                     <i className="fa-solid fa-house"></i>

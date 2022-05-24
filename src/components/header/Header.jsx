@@ -3,7 +3,7 @@ import { Link, useLocation, NavLink, useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/auth-context";
 import { useState, useEffect, useRef } from "react";
 import { useUserData } from "../../context/user-data-context";
-export const Header = () => {
+export const Header = ({showAside, setShowAside}) => {
     const location = useLocation()
     const { token, logout } = useAuth()
     const navigate = useNavigate()
@@ -18,6 +18,9 @@ export const Header = () => {
         <header className=" p-2 header-wrapper">
             <div >
                 <h2>
+                    <button className="fa fa-bars btn-sm fs-md bars-icon" onClick={() => {
+                        setShowAside(!showAside)
+                    }}></button>
                     <Link to="/" className=" text-decoration-none">
                         Keep Notes
                     </Link>
